@@ -35,7 +35,7 @@ const DiscordCard: React.FC<DiscordCardProps> = ({
     return (
         // border border-white hover:border-[#e78284]
         <div
-            className="m-1 w-90 sm:w-96 z-10 rounded-lg p-2 sm:p-5 border border-white hover:border-[#e78284]">
+            className="m-1 w-90 sm:w-96 z-10 rounded-lg p-2 sm:p-5 backdrop-blur-sm bg-[#171717b2]">
             <a href={link} target="_blank">
                 <div className="flex flex-col">
                     <div className="flex items-center space-x-2">

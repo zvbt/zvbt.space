@@ -5,6 +5,9 @@ import ProgressBar from "@/components/progressbar";
 import SpotifyCard from "@/components/SpotifyFooter";
 import { twMerge } from "tailwind-merge";
 import { clsx, type ClassValue } from "clsx";
+import unsplash from "@/lib/unsplash";
+import Link from "next/link";
+const crypto = require('crypto');
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -17,9 +20,18 @@ export default async function Home() {
     start = spotify.timestamps.start;
     end = spotify.timestamps.end;
   }
-  
+
+  const unsplashData = await unsplash();
+  const randomIndex = crypto.randomInt(unsplashData.results.length);
+  const result = unsplashData.results[randomIndex];
+  const imgSource = result.links.html;
+  const author = result.user.name;
+  const randomImg = result.urls.regular;
+
     return (
-        <main className="">
+        <main>
+            <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/>
+            <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-50 text-sm">Background by {author}</Link>
             <div className="flex justify-center">
                 <DiscordCard
                     displayName={`${user.display_name}`}
@@ -37,7 +49,6 @@ export default async function Home() {
                 />
             </div>
             <div className="absolute bottom-0 left-0 right-0">
-            {/* <ProgressBar startEpochTime={start} endEpochTime={end}/> */}
             {listening_to_spotify !== false ? <ProgressBar startEpochTime={start} endEpochTime={end}/> : ' '}
             </div>
             <div className="fixed bottom-0 left-0">
@@ -49,10 +60,8 @@ export default async function Home() {
                 title={listening_to_spotify !== false ? spotify.song : '   '}
                 artist={listening_to_spotify !== false ? `by ${spotify.artist}` : '   '}
               />
-              
             </div>
-
-              
+            {listening_to_spotify !== false ? ' ' : (<div className='fixed bottom-0 left-0 flex justify-center items-center w-[100%] h-[64px] backdrop-blur-sm bg-[#171717b2]'>I'm not listening to Spotify at the moment.</div>)}
         </main>
     );
 }
