@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Color_Emoji } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const noto = Noto_Color_Emoji({ subsets: ["emoji"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "zvbt.space",
