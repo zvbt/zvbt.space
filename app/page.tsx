@@ -31,8 +31,9 @@ export default async function Home() {
     return (
         <main>
             <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/>
-            <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-50 text-sm">Background by {author}</Link>
-            <div className="flex justify-center">
+            {/* <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/ulhldiv4.jpg'} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/> */}
+            <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by {author}</Link>
+            <div className="flex">
                 <DiscordCard
                     displayName={`${user.display_name}`}
                     status={`${status}`}

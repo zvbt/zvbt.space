@@ -38,13 +38,13 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ startEpochTime, endEpochTime 
 
   return (
   <div className='flex flex-col items-end mr-10 pr-0 sm:mr-0'>
-      <div className='w-full h-[64px] backdrop-blur-sm bg-[#171717b2]'>
+      <div className='w-full h-[64px] backdrop-blur-sm bg-[#11111bc2]'>
         <div
           style={{
             width: `${(elapsedTime / (endEpochTime - startEpochTime)) * 100}%`,
             transition: 'width 3s ease',
           }}
-          className='h-full bg-green-600'
+          className='h-full rounded-md bg-[#1DB954]'
         />
       </div>
     </div>
