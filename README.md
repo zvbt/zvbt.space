@@ -1,2 +1,2 @@
-# My personal website made with Next.JS
- In this site you will find every project i have made, some small tool...
+# under cunstruction
+
