@@ -69,7 +69,7 @@ export default async function Home() {
                 artist={listening_to_spotify !== false ? `by ${spotify.artist}` : '   '}
               />
             </div>
-            {listening_to_spotify !== false ? ' ' : (<div className='fixed bottom-0 left-0 flex justify-center items-center w-[100%] h-[64px] backdrop-blur-sm bg-[#11111bc2]'>I'm not listening to Spotify at the moment.</div>)}
+            {listening_to_spotify !== false ? ' ' : (<div className='fixed bottom-0 left-0 flex justify-center items-center w-[100%] h-[64px] backdrop-blur-sm bg-[#11111bc2]'>I&apos;m not listening to Spotify at the moment.</div>)}
         </main>
     );
 }
