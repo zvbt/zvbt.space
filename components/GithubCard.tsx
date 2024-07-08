@@ -1,11 +1,13 @@
+import { Icons } from "./icon";
+
 interface GithubCardProps {
-  user?: any;
-  reponame?: any;
-  description?: any;
-  language?: any;
-  star?: any;
-  link?: any;
-  homepage?: any;
+    user?: any;
+    reponame?: any;
+    description?: any;
+    language?: any;
+    star?: any;
+    link?: any;
+    homepage?: any;
 }
 
 const GithubCard: React.FC<GithubCardProps> = ({
@@ -15,22 +17,36 @@ const GithubCard: React.FC<GithubCardProps> = ({
     language,
     star,
     link,
-    homepage
+    homepage,
 }) => {
     const capitalize = (str: string) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
-  return (
-    <div className="flex-col p-4">
-      <a href={link} className="pr-2 text-blue-500" target="_blank">github</a>
-      <a href={homepage} className="text-blue-500" target="_blank">homepage</a>
-      <p>{process.env.GITHUB_USER}/{reponame}</p>
-      <p>{description}</p>
-      <p>{language}</p>
-      <p>{star}</p>
-    </div>
-  );
-}
+    return (
+        <div className="bg-[#11111bc2] p-4 w-[29rem] h-[12rem] rounded-lg">
+          <div className="inline-flex">
+          <div className="mt-[5px] pr-1"><Icons.archive/></div>
+          <a href={link} className="pr-2 hover:underline" target="_blank">{process.env.GITHUB_USER}/{reponame}</a>
+          </div>
+            <p className="text-sm text-[#a6adc8]">{description}</p>
+
+            <div className="inline-flex space-x-1 mt-3 text-xs backdrop-blur-sm">
+                <div className="inline-flex bg-[#11111bc2] p-1 rounded-lg">
+                    <p>{language}</p>
+                </div>
+                <div className="bg-[#11111bc2] rounded-lg inline-flex p-1 items-center">
+                    <p>⭐</p>
+                    <p>{star}</p>
+                    
+                </div>
+                <div className="bg-[#11111bc2] rounded-lg inline-flex p-1 items-center">
+                <a href={homepage} target="_blank" title="Website"><Icons.globe/></a>
+                </div>
+                
+            </div>
+        </div>
+    );
+};
 
 export default GithubCard;

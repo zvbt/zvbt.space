@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image";
 import DiscordCard from "@/components/DiscordCard";
 import { lanyard } from "@/lib/lanyard";
@@ -26,10 +25,7 @@ export default async function Home() {
     start = spotify.timestamps.start;
     end = spotify.timestamps.end;
   }
-
-  const flag = bio[0] && bio[0].state
-    ? `${bio[0].emoji?.name || ''} ${bio[0].state}`.trim()
-    : bio[0]?.emoji?.name || bio[0]?.state || ' ';
+  const flag = bio[0] && bio[0].state ? `${bio[0].emoji?.name || ''} ${bio[0].state}`.trim() : bio[0]?.emoji?.name || bio[0]?.state || ' ';
   const parsedFlag = parseEmojis(flag);
 
   // const unsplashData = await unsplash();
@@ -40,7 +36,6 @@ export default async function Home() {
   // const randomImg = result.urls.regular;
 
   let github = await githubapi()
-
   let animeclient = null;
   for (const key in github) {
     if (github[key].name === 'AnimeClient') {
@@ -48,7 +43,6 @@ export default async function Home() {
         break;
     }
   }
-  
   let ongaku = null;
   for (const key in github) {
     if (github[key].name === 'ongaku') {
@@ -56,7 +50,6 @@ export default async function Home() {
         break;
     }
   }
-
   let mdl = null;
   for (const key in github) {
     if (github[key].name === 'MyDramalistPLUS') {
@@ -102,16 +95,33 @@ export default async function Home() {
             {listening_to_spotify !== false ? ' ' : (<div className='fixed bottom-0 left-0 flex justify-center items-center w-[100%] h-[64px] backdrop-blur-sm bg-[#11111bc2]'>I&apos;m not listening to Spotify at the moment.</div>)}
 
 
-            <div className="z-50 absolute">
-            <GithubCard       
-            reponame={mdl.name}
-            description={mdl.description}
-            language={mdl.language}
-            star={mdl.stargazers_count}
-            link={mdl.html_url}
-            homepage={mdl.homepage}
-            />
+            <div className="z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <GithubCard
+                reponame={animeclient.name}
+                description={animeclient.description}
+                language={animeclient.language}
+                star={`${animeclient.stargazers_count}`}
+                link={animeclient.html_url}
+                homepage={animeclient.homepage}
+              />
+              <GithubCard
+                reponame={ongaku.name}
+                description={ongaku.description}
+                language={ongaku.language}
+                star={`${ongaku.stargazers_count}`}
+                link={ongaku.html_url}
+                homepage={ongaku.homepage}
+              />
+              <GithubCard
+                reponame={mdl.name}
+                description={mdl.description}
+                language={mdl.language}
+                star={`${mdl.stargazers_count}`}
+                link={mdl.html_url}
+                homepage={mdl.homepage}
+              />
             </div>
+
         </main>
     );
     console.log(mdl.homepage)

@@ -8,6 +8,9 @@ import {
     StarIcon as Star,
     SunIcon as Sun,
     PlayIcon as play,
+    GlobeIcon as globe,
+    BookmarkFilledIcon as book,
+    ArchiveIcon as archive
   } from "@radix-ui/react-icons";
   
   interface IconProps {
@@ -62,6 +65,9 @@ import {
     ),
     external: ExternalLink,
     moon: Moon,
+    globe: globe,
+    book: book,
+    archive: archive,
     twitter: (props: IconProps) => {
       return (
         <svg
