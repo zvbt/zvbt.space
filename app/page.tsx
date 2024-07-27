@@ -28,12 +28,12 @@ export default async function Home() {
   const flag = bio[0] && bio[0].state ? `${bio[0].emoji?.name || ''} ${bio[0].state}`.trim() : bio[0]?.emoji?.name || bio[0]?.state || ' ';
   const parsedFlag = parseEmojis(flag);
 
-  // const unsplashData = await unsplash();
-  // const randomIndex = crypto.randomInt(unsplashData.results.length);
-  // const result = unsplashData.results[randomIndex];
-  // const imgSource = result.links.html;
-  // const author = result.user.name;
-  // const randomImg = result.urls.regular;
+  const unsplashData = await unsplash();
+  const randomIndex = crypto.randomInt(unsplashData.results.length);
+  const result = unsplashData.results[randomIndex];
+  const imgSource = result.links.html;
+  const author = result.user.name;
+  const randomImg = result.urls.regular;
 
   let github = await githubapi()
   let animeclient = null;
@@ -57,12 +57,26 @@ export default async function Home() {
         break;
     }
   }
+  let viki = null;
+  for (const key in github) {
+    if (github[key].name === 'Viki-Volume-Control') {
+        viki = github[key];
+        break;
+    }
+  }
+  let pihole = null;
+  for (const key in github) {
+    if (github[key].name === 'pihole-updater') {
+      pihole = github[key];
+        break;
+    }
+  }
   
     return (
         <main>
-            {/* <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/> */}
-            <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/ulhldiv4.jpg'} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/>
-            {/* <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by {author}</Link> */}
+            <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/>
+            {/* <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/ulhldiv4.jpg'} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-0' draggable={false} alt='bg' quality={100}/> */}
+            <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by {author}</Link>
             <div className="flex">
                 <DiscordCard
                     displayName={`${user.display_name}`}
@@ -95,7 +109,7 @@ export default async function Home() {
             {listening_to_spotify !== false ? ' ' : (<div className='fixed bottom-0 left-0 flex justify-center items-center w-[100%] h-[64px] backdrop-blur-sm bg-[#11111bc2]'>I&apos;m not listening to Spotify at the moment.</div>)}
 
 
-            <div className="z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="flex flex-col items-center justify-center sm:flex-row sm:flex-wrap sm:space-x-2 md:space-x-4 lg:space-x-6 xl:space-x-8 z-50">
               <GithubCard
                 reponame={animeclient.name}
                 description={animeclient.description}
@@ -120,7 +134,27 @@ export default async function Home() {
                 link={mdl.html_url}
                 homepage={mdl.homepage}
               />
-            </div>
+              <GithubCard
+                reponame={viki.name}
+                description={viki.description}
+                language={viki.language}
+                star={`${viki.stargazers_count}`}
+                link={viki.html_url}
+                homepage={viki.homepage}
+              />
+              <GithubCard
+                reponame={pihole.name}
+                description={pihole.description}
+                language={pihole.language}
+                star={`${pihole.stargazers_count}`}
+                link={pihole.html_url}
+                homepage={pihole.homepage}
+              />
+              
+          </div>
+
+
+
 
         </main>
     );
