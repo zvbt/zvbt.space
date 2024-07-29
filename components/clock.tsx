@@ -15,7 +15,7 @@ export default function Clock() {
     const displayHours = (hours % 12 || 12).toString().padStart(2, '0');
 
     return (
-        <div className="fixed top-4 left-4 border bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg text-gray-300 px-4 py-2 rounded-full shadow-sm z-20">
+        <div className="fixed top-4 left-4 border bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg text-white px-4 py-2 rounded-full shadow-sm z-20">
             {displayHours}:{minutes}:{seconds} {ampm}
         </div>
     );
