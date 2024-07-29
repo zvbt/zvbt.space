@@ -17,6 +17,7 @@ export default async function Home() {
 
     return (
         <main>
+            <title>New Tab</title>
              <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/>
             <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[10px]">Background by {author}</Link>
             
