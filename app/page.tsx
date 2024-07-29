@@ -28,13 +28,16 @@ export default async function Home() {
   const flag = bio[0] && bio[0].state ? `${bio[0].emoji?.name || ''} ${bio[0].state}`.trim() : bio[0]?.emoji?.name || bio[0]?.state || ' ';
   const parsedFlag = parseEmojis(flag);
 
-  const unsplashData = await unsplash();
-  const randomIndex = crypto.randomInt(unsplashData.results.length);
-  const result = unsplashData.results[randomIndex];
-  const imgSource = result.links.html;
-  const author = result.user.name;
-  const randomImg = result.urls.regular;
+  //Unsplash
+  // const unsplashData = await unsplash();
+  // const randomIndex = crypto.randomInt(unsplashData.results.length);
+  // const result = unsplashData.results[randomIndex];
+  // const imgSource = result.links.html;
+  // const author = result.user.name;
+  // const randomImg = result.urls.regular;
 
+
+  //Github card
   let github = await githubapi()
   let animeclient = null;
   for (const key in github) {
@@ -74,9 +77,11 @@ export default async function Home() {
   
     return (
         <main>
-            <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/>
-            {/* <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/ulhldiv4.jpg'} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-0' draggable={false} alt='bg' quality={100}/> */}
-            <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by {author}</Link>
+            {/* <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/> */}
+            {/* <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by {author}</Link> */}
+            <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} width={1920} height={1080} className='fixed object-cover w-full h-full blur-sm z-0' draggable={false} alt='bg' quality={100}/>
+            <Link href={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by Unknown</Link>
+            
             <div className="flex">
                 <DiscordCard
                     displayName={`${user.display_name}`}
@@ -93,7 +98,7 @@ export default async function Home() {
                     ) : '   '}
                 />
             </div>
-            <div className="absolute bottom-0 left-0 right-0">
+            <div className="fixed bottom-0 left-0 right-0">
             {listening_to_spotify !== false ? <ProgressBar startEpochTime={start} endEpochTime={end}/> : ' '}
             </div>
             <div className="fixed bottom-0 left-0">
