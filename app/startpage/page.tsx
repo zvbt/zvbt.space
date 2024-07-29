@@ -1,7 +1,6 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import Clock from "@/components/clock";
 import unsplash from "@/lib/unsplash";
 const crypto = require('crypto');
 export default async function Home() {
@@ -21,7 +20,6 @@ export default async function Home() {
              <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/>
             <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[10px]">Background by {author}</Link>
             
-            <Clock />
             <div className="flex justify-center items-center h-screen z-10 relative">
                 <form action="https://www.google.com/search" method="get" className="w-full max-w-md">
                     <input 
