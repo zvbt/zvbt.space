@@ -42,7 +42,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ startEpochTime, endEpochTime 
         <div
           style={{
             width: `${(elapsedTime / (endEpochTime - startEpochTime)) * 100}%`,
-            transition: 'width 3s ease',
+            transition: 'width 2s ease',
           }}
           className='h-full rounded-md bg-[#1DB954]'
         />
