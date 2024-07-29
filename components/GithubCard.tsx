@@ -24,7 +24,7 @@ const GithubCard: React.FC<GithubCardProps> = ({
     };
 
     return (
-        <div className="bg-[#11111bc2] m-2 p-4 w-[29rem] h-[12rem] rounded-lg z-50 flex flex-col justify-between">
+        <div className="bg-[#11111bc2] m-2 p-4 w-[29rem] h-[12rem] rounded-lg z-50 flex flex-col justify-between" >
             <div>
                 <div className="inline-flex mb-2">
                     <div className="mt-[5px] pr-1">
