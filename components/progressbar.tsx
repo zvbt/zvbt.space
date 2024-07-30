@@ -37,7 +37,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ startEpochTime, endEpochTime 
   const formattedTotalSeconds = totalSeconds.toString().padStart(2, '0');
 
   return (
-  <div className='flex flex-col items-end overflow-x-hidden'>
+  <div className='hidden lg:flex flex-col items-end overflow-x-hidden'>
       <div className='ml-[64px] w-full h-[64px] backdrop-blur-sm bg-[#11111bc2]'>
         <div
           style={{

@@ -23,8 +23,12 @@ const GithubCard: React.FC<GithubCardProps> = ({
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    const truncate = (str: string, n: number) => {
+        return str.length > n ? str.substr(0, n - 1) + '...' : str;
+    };
+
     return (
-        <div className="bg-[#11111bc2] m-2 p-4 w-[29rem] h-[12rem] rounded-lg z-50 flex flex-col justify-between" >
+        <div className="bg-[#11111bc2] m-1 p-4 w-[20rem] h-[9rem] rounded-lg z-50 flex flex-col justify-between sm:w-[20rem] sm:h-[9rem] lg:w-[29rem] lg:h-[12rem]" >
             <div>
                 <div className="inline-flex mb-2">
                     <div className="mt-[5px] pr-1">
@@ -32,7 +36,9 @@ const GithubCard: React.FC<GithubCardProps> = ({
                     </div>
                     <a href={link} className="pr-2 hover:underline" target="_blank">{process.env.GITHUB_USER}/{reponame}</a>
                 </div>
-                <p className="text-sm text-[#a6adc8]">{description}</p>
+                {/* github description */}
+                <p className="text-sm text-[#a6adc8] lg:hidden">{truncate(description, 80)}</p>
+                <p className="text-sm text-[#a6adc8] hidden lg:block">{description}</p>
             </div>
 
             {/* tags star and link */}

@@ -80,7 +80,7 @@ export default async function Home() {
             {/* <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100}/> */}
             {/* <Link href={imgSource} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by {author}</Link> */}
             <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} width={1920} height={1080} className='fixed object-cover w-full h-full blur-sm z-0' draggable={false} alt='bg' quality={100}/>
-            <Link href={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} target='_blank' className="z-50 absolute mx-2 opacity-60 text-sm right-0 bottom-[70px]">Background by Unknown</Link>
+            <Link href={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} target='_blank' className="z-50 fixed mx-2 opacity-60 text-sm right-0 bottom-[1px] lg:bottom-[70px]">Background by Unknown</Link>
             
             <div className="flex">
                 <DiscordCard
@@ -101,7 +101,7 @@ export default async function Home() {
             <div className="fixed bottom-0 left-0 right-0">
             {listening_to_spotify !== false ? <ProgressBar startEpochTime={start} endEpochTime={end}/> : ' '}
             </div>
-            <div className="fixed bottom-0 left-0">
+            <div className="hidden lg:fixed lg:flex lg:bottom-0 lg:left-0">
               <SpotifyCard 
                 link={listening_to_spotify !== false ? `https://open.spotify.com/track/${spotify.track_id}` : '#'}
                 Image={listening_to_spotify !== false ? spotify.album_art_url : ' '}
@@ -111,52 +111,22 @@ export default async function Home() {
                 artist={listening_to_spotify !== false ? `by ${spotify.artist}` : '   '}
               />
             </div>
-            {listening_to_spotify !== false ? ' ' : (<div className='fixed bottom-0 left-0 flex justify-center items-center w-[100%] h-[64px] backdrop-blur-sm bg-[#11111bc2]'>I&apos;m not listening to Spotify at the moment.</div>)}
+            {listening_to_spotify !== false ? ' ' : (<div className='hidden lg:fixed lg:bottom-0 lg:left-0 lg:right-0 lg:flex lg:justify-center lg:items-center lg:w-full lg:h-[64px] lg:backdrop-blur-sm lg:bg-[#11111bc2]'>I&apos;m not listening to Spotify at the moment.</div>)}
 
 
-            <div className="flex flex-col items-center justify-center sm:flex-row sm:flex-wrap sm:space-x-2 md:space-x-4 lg:space-x-6 xl:space-x-8 z-50">
-              <GithubCard
-                reponame={animeclient.name}
-                description={animeclient.description}
-                language={animeclient.language}
-                star={`${animeclient.stargazers_count}`}
-                link={animeclient.html_url}
-                homepage={animeclient.homepage}
-              />
-              <GithubCard
-                reponame={ongaku.name}
-                description={ongaku.description}
-                language={ongaku.language}
-                star={`${ongaku.stargazers_count}`}
-                link={ongaku.html_url}
-                homepage={ongaku.homepage}
-              />
-              <GithubCard
-                reponame={mdl.name}
-                description={mdl.description}
-                language={mdl.language}
-                star={`${mdl.stargazers_count}`}
-                link={mdl.html_url}
-                homepage={mdl.homepage}
-              />
-              <GithubCard
-                reponame={viki.name}
-                description={viki.description}
-                language={viki.language}
-                star={`${viki.stargazers_count}`}
-                link={viki.html_url}
-                homepage={viki.homepage}
-              />
-              <GithubCard
-                reponame={pihole.name}
-                description={pihole.description}
-                language={pihole.language}
-                star={`${pihole.stargazers_count}`}
-                link={pihole.html_url}
-                homepage={pihole.homepage}
-              />
-              
-          </div>
+            <div className="flex flex-col items-center justify-center lg:flex-row lg:flex-wrap z-50">
+              {[animeclient,ongaku,mdl,viki,pihole].map(repo => (
+                <GithubCard
+                  key={repo.name}
+                  reponame={repo.name}
+                  description={repo.description}
+                  language={repo.language}
+                  star={`${repo.stargazers_count}`}
+                  link={repo.html_url}
+                  homepage={repo.homepage}
+                />
+                ))}
+            </div>
 
 
 
