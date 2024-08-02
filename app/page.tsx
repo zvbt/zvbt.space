@@ -74,6 +74,13 @@ export default async function Home() {
         break;
     }
   }
+  let site = null;
+  for (const key in github) {
+    if (github[key].name === 'zvbt.space') {
+      site = github[key];
+        break;
+    }
+  }
   
     return (
         <main>
@@ -115,7 +122,7 @@ export default async function Home() {
 
 
             <div className="flex flex-col items-center justify-center lg:flex-row lg:flex-wrap z-50">
-              {[animeclient,ongaku,mdl,viki,pihole].map(repo => (
+              {[animeclient,ongaku,mdl,viki,pihole,site].map(repo => (
                 <GithubCard
                   key={repo.name}
                   reponame={repo.name}
