@@ -55,8 +55,8 @@ const DiscordCard: React.FC<DiscordCardProps> = ({
                         
                         <ul className="list-none ml-4 text-sm sm:text-base ">
                             <li>{displayName}</li>
-                            <li>{flag}</li>
-                            <li>{game}</li>
+                            <li>{flag} {game}</li>
+                         
                         </ul>
                     </div>
                 </div>
