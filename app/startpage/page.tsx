@@ -18,10 +18,8 @@ export default async function Home() {
                     />
                 </form>
             </div>
-
             <NoteTaking />
-
-           
+            
         </main>
     );
 }
