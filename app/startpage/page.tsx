@@ -26,16 +26,13 @@ export default function Home() {
             const url = query.startsWith('http') ? query : `http://${query}`;
             window.location.href = url;
         } else {
-            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
             window.location.href = searchUrl;
         }
     };
 
 
-
-
-
-    const [currentImage, setCurrentImage] = useState('img/side1.gif');
+    const [currentImage, setCurrentImage] = useState('/img/side1.gif');
     const [imageKey, setImageKey] = useState(0); // force re-render of image
 
     const imageCount = 23; // number of GIFs
@@ -66,7 +63,7 @@ export default function Home() {
         // random gif every 10sec
         const changeImage = () => {
             const randomIndex = Math.floor(Math.random() * imageCount) + 1;
-            setCurrentImage(`img/side${randomIndex}.gif`);
+            setCurrentImage(`/img/side${randomIndex}.gif`);
             setImageKey(prevKey => prevKey + 1);
         };
 
@@ -97,10 +94,10 @@ export default function Home() {
             <div className="main block">
                 <div className="image-wrapper">
                     <div className="mySlides">
-                        <img src={currentImage} key={imageKey} className="fade" alt="Random GIF" />
+                        <Image src={currentImage} key={imageKey} className="fade" alt="Random GIF" width={300} height={600} quality={100}/>
                     </div>
                 </div>
-
+       
                 <header className='mt-20 mb-10 text-[40px]'>
                     <h1>Hello, <span className="flair">시아딘</span></h1>
                 </header>
@@ -139,6 +136,23 @@ export default function Home() {
 
                 <div className="codes" id="codes"></div>
             </div>
+
+            <div className="flex justify-center my-[-4.5em]">
+            <div className="w-[1070px]">
+            <form onSubmit={handleSubmit} className="">
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Search" 
+                    ref={inputRef}
+                    className="text-center w-[1070px] px-4 py-2 border border-[#232328] bg-[#18181D] focus:outline-none text-white placeholder-[#adadad] hover:placeholder-white"
+                />
+            </form>
+            </div>
+        </div>
+
+
+
         </main>
     );
 }
