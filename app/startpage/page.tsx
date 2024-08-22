@@ -94,7 +94,7 @@ export default function Home() {
             <div className="main block">
                 <div className="image-wrapper">
                     <div className="mySlides">
-                        <Image src={currentImage} key={imageKey} className="fade" alt="Random GIF" width={300} height={600} quality={100}/>
+                        <Image src={currentImage} key={imageKey} className="fade" alt="Random GIF" width={300} height={600} quality={100} unoptimized/>
                     </div>
                 </div>
        
