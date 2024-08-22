@@ -17,6 +17,8 @@ import githubapi from "@/lib/github";
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
+
+
 export default async function Home() {
   const {discord_user: user, discord_status: status , activities: bio, listening_to_spotify, spotify} = await lanyard();
   let start = 0;
@@ -81,6 +83,9 @@ export default async function Home() {
         break;
     }
   }
+
+
+
   
     return (
         <main>
@@ -89,6 +94,9 @@ export default async function Home() {
             {/* <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} width={1920} height={1080} className='fixed object-cover w-full h-full blur-sm z-0' draggable={false} alt='bg' quality={100}/> */}
             {/* <Link href={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} target='_blank' className="z-50 fixed mx-2 opacity-60 text-sm right-0 bottom-[1px] lg:bottom-[70px]">Background by Unknown</Link> */}
             
+            
+
+
             <div className="flex">
                 <DiscordCard
                     displayName={`${user.display_name}`}

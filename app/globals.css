@@ -7,6 +7,11 @@
   src: url('/fonts/NanumGothic-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Iosevka';
+  src: url('/fonts/Iosevka.ttf'); /* Ensure the font file is placed in the public directory */
+}
+
 body{
   background-color: black;
   color: white;

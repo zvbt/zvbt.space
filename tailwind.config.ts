@@ -15,7 +15,14 @@ const config: Config = {
       },
       fontFamily: {
         NanumGothic: ['NanumGothic', 'sans-serif'],
+        iosevka: ['Iosevka', 'monospace'],
       },
+      colors: {
+        'custom-blue': '#0972D6',
+        'custom-red': '#ed3434',
+        'custom-green': '#4FAE0F',
+        'custom-yellow': '#edd934',
+      }
     },
   },
   plugins: [],
