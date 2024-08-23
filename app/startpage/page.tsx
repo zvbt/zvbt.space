@@ -5,11 +5,25 @@ import NoteTaking from "@/components/NoteTaking";
 import Clock from "@/components/clock";
 import "./main.css"
 
+interface Bang {
+    baseUrl: string;
+    searchPattern: string;
+}
+
 export default function Home() {
+    const [bangs, setBangs] = useState<{ [key: string]: Bang }>({});
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         inputRef.current?.focus();
+    }, []);
+
+    useEffect(() => {
+        // Fetch the bangs JSON file
+        fetch('/bangs.json')
+            .then(response => response.json())
+            .then(data => setBangs(data))
+            .catch(error => console.error('Error fetching bangs:', error));
     }, []);
 
     const handleSubmit = (event: FormEvent) => {
@@ -18,16 +32,25 @@ export default function Home() {
         if (!query) return;
 
         const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-        
+
         if (urlPattern.test(query)) {
             const url = query.startsWith('http') ? query : `http://${query}`;
             window.location.href = url;
         } else {
-            const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
-            window.location.href = searchUrl;
+            const bangKey = Object.keys(bangs).find(bang => query.startsWith(bang));
+            if (bangKey) {
+                const bangQuery = query.replace(bangKey, '').trim();
+                const { baseUrl, searchPattern } = bangs[bangKey];
+                const searchUrl = bangQuery
+                    ? `${baseUrl}/${searchPattern}${encodeURIComponent(bangQuery)}`
+                    : baseUrl;
+                window.location.href = searchUrl;
+            } else {
+                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                window.location.href = searchUrl;
+            }
         }
     };
-
 
     const [currentImage, setCurrentImage] = useState('/img/side1.gif');
     const [imageKey, setImageKey] = useState(0); // force re-render of image
@@ -71,22 +94,8 @@ export default function Home() {
         <main>
             <body className='font-iosevka text-[20px] w-[670px] h-[320px] absolute top-0 bottom-[100px] left-0 right-0 m-auto bg-[#0F0F12]'>
             <title>New Tab</title>
-            {/* old page 
-            <Image src={'https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/a8hokk7w.png'} width={1920} height={1080} className='fixed object-cover w-full h-full blur-sm z-0' draggable={false} alt='bg' quality={100}/>
-            <Clock />          
-            <div className="flex justify-center items-center h-screen z-10 relative">
-                <form onSubmit={handleSubmit} className="w-full max-w-md">
-                    <input 
-                        type="text" 
-                        name="q" 
-                        placeholder="서치" 
-                        ref={inputRef}
-                        className="text-center w-full px-4 py-2 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg text-white placeholder-white"
-                    />
-                </form>
-            </div>
+            
             <NoteTaking />
-            */}
 
             <div className="inline-block border border-[#232328] relative -top-[100px] w-[770px] h-[600px] -left-[200px] right-0 mx-auto bg-[#18181D] text-center">
                 <div className="border border-solid border-[#232328] absolute top-[-1px] w-[300px] h-[600px] left-[770px] bg-[#18181D] bg-center bg-no-repeat bg-cover">
