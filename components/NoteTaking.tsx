@@ -35,23 +35,22 @@ const NoteTaking: React.FC = () => {
     <div>
       <button
         onClick={toggleNotesVisibility}
-        className="fixed top-2 left-2 py-2 px-4 border bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg hover:bg-white hover:text-black text-white rounded font-NanumGothic z-50"
+        className="fixed top-2 left-2 py-2 px-4 border border-[#232328] bg-[#18181D] text-[#adadad] font-iosevka text-[16px] z-50"
       >
-        {showNotes ? '노트 숨기기' : '노트 표시'}
+        {showNotes ? 'Hide notes' : 'Show notes'}
       </button>
       {showNotes && (
-        <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg p-4 rounded-lg shadow-md z-40 fixed top-1/2 left-2 transform -translate-y-1/2 w-full max-w-lg h-auto min-h-[50rem] flex flex-col">
-          <h1 className="text-white mb-2 text-center font-NanumGothic">노트를</h1>
+        <div className="bg-[#18181D] border border-[#232328] p-4 z-40 fixed top-1/2 left-2 transform -translate-y-1/2 w-full max-w-lg h-auto min-h-[50rem] flex flex-col">
           <textarea
             value={note}
             onChange={saveNote}
-            className="w-full flex-grow px-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg text-white placeholder-white resize-none overflow-auto font-NanumGothic"
+            className="w-full flex-grow px-2 border focus:outline-none bg-[#18181D] bg-opacity-10 backdrop-filter backdrop-blur-lg text-[#adadad] resize-none overflow-auto font-NanumGothic"
           />
           <button
             onClick={downloadNote}
-            className="mt-2 py-2 border bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg hover:bg-white hover:text-black text-white rounded font-NanumGothic"
+            className="mt-2 py-2 border bg-[#18181D] hover:text-[#0972D6] text-[#adadad] font-iosevka text-[16px]"
           >
-            노트를 다운받음
+            Download notes
           </button>
         </div>
       )}
