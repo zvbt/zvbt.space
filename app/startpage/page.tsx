@@ -140,6 +140,7 @@ export default function Home() {
                         <li><a href="https://papago.naver.com/" className="hover:text-yellow-500">papago</a></li>
                         <li><a href="https://www.deeplol.gg/summoner/EUW/Long%20time%20no%20see-jisu" className="hover:text-yellow-500">deeplol</a></li>
                         <li><a href="https://tracker.gg/valorant/profile/riot/Long%20time%20no%20see%23jisu/overview" className="hover:text-yellow-500">tracker.gg</a></li>
+                        <li><a href="https://online-go.com/" className="hover:text-yellow-500">OGS</a></li>
                         
                     </ul>
                 </nav>
