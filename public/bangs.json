@@ -1,5 +1,5 @@
 {
-    "!gh": { "baseUrl": "https://github.com", "searchPattern": "" },
+    "!gh": { "baseUrl": "https://github.com", "searchPattern": "search?q=" },
     "!yt": { "baseUrl": "https://www.youtube.com", "searchPattern": "search?q=" },
     "!x": { "baseUrl": "https://x.com", "searchPattern": "search?q=" },
     "!amazon": { "baseUrl": "https://www.amazon.com", "searchPattern": "s?k=" },
@@ -7,11 +7,13 @@
     "!ani": { "baseUrl": "https://anilist.co", "searchPattern": "search?query=" },
     "!cr": { "baseUrl": "https://www.crunchyroll.com", "searchPattern": "search/?q=" },
     "!adn": { "baseUrl": "https://animationdigitalnetwork.com", "searchPattern": "video?search=" },
-    "!ig": { "baseUrl": "https://www.instagram.com", "searchPattern": "accounts/search/?query=" },
+    "!ig": { "baseUrl": "https://www.instagram.com", "searchPattern": "" },
     "!reddit": { "baseUrl": "https://www.reddit.com/search", "searchPattern": "?q=" },
     "!ytm": { "baseUrl": "https://music.youtube.com/search", "searchPattern": "?query=" },
     "!spot": { "baseUrl": "https://open.spotify.com", "searchPattern": "search/" },
     "!alks": { "baseUrl": "https://www.allkeyshop.com/blog/catalogue", "searchPattern": "search-" },
     "!steam": { "baseUrl": "https://store.steampowered.com", "searchPattern": "search/?term=" },
-    "!oskin": { "baseUrl": "https://compendium.skinship.xyz", "searchPattern": "?search=" }
+    "!oskin": { "baseUrl": "https://compendium.skinship.xyz", "searchPattern": "?search=" },
+    "!igg": { "baseUrl": "https://igg-games.com", "searchPattern": "?s=" },
+    "!g3rb": { "baseUrl": "https://game3rb.com", "searchPattern": "?s=" }
 }
