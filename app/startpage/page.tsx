@@ -117,8 +117,9 @@ export default function Home() {
                         <li><a href="https://www.youtube.com" className="hover:text-blue-500">youtube</a></li>
                         <li><a href="https://twitch.tv/" className="hover:text-blue-500">twitch</a></li>
                         <li><a href="https://x.com/" className="hover:text-blue-500">twitter</a></li>
-                        <li><a href="https://mydramalist.com/dramalist/Cyadine" className="hover:text-blue-500">mydramalist</a></li>
-                        <li><a href="https://anilist.co/home" className="hover:text-blue-500">anilist</a></li>
+                        <li><a href="https://gmail.com/" className="hover:text-blue-500">gmail</a></li>
+                        <li><a href="https://mail.proton.me" className="hover:text-blue-500">proton</a></li>
+                        
                     </ul>
 
                     <ul className="green flex-1 flex flex-col items-center text-[#adadad] hover:text-white ">
@@ -130,9 +131,10 @@ export default function Home() {
                     </ul>
 
                     <ul className="red flex-1 flex flex-col items-center text-[#adadad] hover:text-white ">
-                        <li className='mb-2'>Mail</li>
-                        <li><a href="https://gmail.com/" className="hover:text-red-500">gmail</a></li>
-                        <li><a href="https://mail.proton.me" className="hover:text-red-500">proton</a></li>
+                        <li className='mb-2'>Animes & Drama</li>
+                        <li><a href="https://mydramalist.com/dramalist/Cyadine" className="hover:text-red-500">mydramalist</a></li>
+                        <li><a href="https://anilist.co/home" className="hover:text-red-500">anilist</a></li>
+                        <li><a href="http://192.168.1.32:9900/" className="hover:text-red-500">mango</a></li>
                         
                     </ul>
 
