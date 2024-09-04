@@ -4,6 +4,7 @@ import Image from "next/image";
 import NoteTaking from "@/components/NoteTaking";
 import Clock from "@/components/clock";
 import "./main.css"
+import AudioPlayer from "@/components/AudioPlayer";
 
 interface Bang {
     baseUrl: string;
@@ -95,10 +96,15 @@ export default function Home() {
 
     return (
         <main>
+            <div className="fixed bottom-2 left-0 right-0 z-50 ml-2">
+                <AudioPlayer src="https://fluxfm.streamabc.net/flx-chillhop-mp3-128-8581707" />
+            </div>
             <body className='font-iosevka text-[20px] w-[670px] h-[320px] absolute top-0 bottom-[100px] left-0 right-0 m-auto bg-[#0F0F12]'>
             <title>New Tab</title>
             <link rel="icon" href="/planet.png" />
             <NoteTaking />
+
+           
 
             <div className="inline-block border border-[#232328] relative -top-[100px] w-[770px] h-[600px] -left-[200px] right-0 mx-auto bg-[#18181D] text-center">
                 <div className="border border-solid border-[#232328] absolute top-[-1px] w-[300px] h-[600px] left-[770px] bg-[#18181D] bg-center bg-no-repeat bg-cover">
