@@ -12,48 +12,27 @@ interface Bang {
 }
 
 export default function Home() {
-    const [bangs, setBangs] = useState<{ [key: string]: Bang }>({});
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         inputRef.current?.focus();
     }, []);
 
-    useEffect(() => {
-        fetch('/bangs.json')
-            .then(response => response.json())
-            .then(data => setBangs(data))
-            .catch(error => console.error('Error fetching bangs:', error));
-    }, []);
-
     const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    const query = inputRef.current?.value;
-    if (!query) return;
+        event.preventDefault();
+        const query = inputRef.current?.value;
+        if (!query) return;
 
-    const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+        const urlPattern = /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
 
-    if (urlPattern.test(query)) {
-        const url = query.startsWith('http') ? query : `http://${query}`;
-        window.location.href = url;
-    } else {
-        const bangKey = Object.keys(bangs)
-            .sort((a, b) => b.length - a.length)
-            .find(bang => query.startsWith(bang));
-
-        if (bangKey) {
-            const bangQuery = query.replace(bangKey, '').trim();
-            const { baseUrl, searchPattern } = bangs[bangKey];
-            const searchUrl = bangQuery
-                ? `${baseUrl}/${searchPattern}${encodeURIComponent(bangQuery)}`
-                : baseUrl;
-            window.location.href = searchUrl;
+        if (urlPattern.test(query)) {
+            const url = query.startsWith('http') ? query : `http://${query}`;
+            window.location.href = url;
         } else {
-            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
             window.location.href = searchUrl;
         }
-    }
-};
+    };
 
 
     const [currentImage, setCurrentImage] = useState('/img/side1.gif');
