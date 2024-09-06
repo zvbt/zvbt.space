@@ -135,7 +135,7 @@ export default function Home() {
                     </ul>
                 </nav>
 
-                <div className="text-white font-mono text-lg absolute top-[565px] w-auto h-auto left-[12px]" id="codes"></div>
+                <div className="font-iosevkamono text-white text-base absolute top-[565px] w-auto h-auto left-[12px]" id="codes"></div>
             </div>
 
             <div className="flex justify-center my-[-4.5em]">
@@ -146,7 +146,7 @@ export default function Home() {
                     name="q" 
                     placeholder="서치" 
                     ref={inputRef}
-                    className="text-center w-[1070px] px-4 py-2 border border-[#232328] bg-[#18181D] focus:outline-none text-white placeholder-[#adadad] hover:placeholder-white"
+                    className="font-iosevka text-lg text-center w-[1070px] px-4 py-2 border border-[#232328] bg-[#18181D] focus:outline-none text-white placeholder-[#adadad] hover:placeholder-white"
                 />
             </form>
             </div>

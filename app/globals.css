@@ -12,6 +12,11 @@
   src: url('/fonts/Iosevka.ttf'); /* Ensure the font file is placed in the public directory */
 }
 
+@font-face {
+  font-family: 'IosevkaNerdFontMono';
+  src: url('/fonts/IosevkaNerdFontMono.ttf'); /* Ensure the font file is placed in the public directory */
+}
+
 body{
   background-color: black;
   color: white;

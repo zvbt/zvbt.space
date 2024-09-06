@@ -15,7 +15,8 @@ const config: Config = {
       },
       fontFamily: {
         NanumGothic: ['NanumGothic', 'sans-serif'],
-        iosevka: ['Iosevka', 'monospace'],
+        iosevka: ['Iosevka', 'regular'],
+        iosevkamono: ['IosevkaNerdFontMono', 'monospace']
       },
       colors: {
         'custom-blue': '#0972D6',
