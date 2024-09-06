@@ -76,7 +76,7 @@ export default function Home() {
     return (
         <main>
             <div className="fixed bottom-2 left-0 right-0 z-50 ml-2">
-                <AudioPlayer src="https://fluxfm.streamabc.net/flx-chillhop-mp3-128-8581707" />
+                <AudioPlayer src="https://ongaku-api.zvbt.space/listen/lofi/radio.mp3" />
             </div>
             <body className='font-iosevka text-[20px] w-[670px] h-[320px] absolute top-0 bottom-[100px] left-0 right-0 m-auto bg-[#0F0F12]'>
             <title>New Tab</title>
