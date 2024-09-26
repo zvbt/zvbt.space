@@ -29,7 +29,7 @@ export default function Home() {
             const url = query.startsWith('http') ? query : `http://${query}`;
             window.location.href = url;
         } else {
-            const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
+            const searchUrl = `https://search.brave.com/search?q=${encodeURIComponent(query)}`;
             window.location.href = searchUrl;
         }
     };
