@@ -104,15 +104,13 @@ export default function Home() {
                         <li><a href="https://x.com/" className="hover:text-blue-500">twitter</a></li>
                         <li><a href="https://gmail.com/" className="hover:text-blue-500">gmail</a></li>
                         <li><a href="https://mail.proton.me" className="hover:text-blue-500">proton</a></li>
-                        
                     </ul>
 
                     <ul className="green flex-1 flex flex-col items-center text-[#adadad] hover:text-white ">
                         <li className='mb-2'>Dev</li>
                         <li><a href="https://github.com" className="hover:text-green-500">github</a></li>
-                        <li><a href="http://192.168.1.32:3000/" className="hover:text-green-500">dokploy</a></li>
-                        <li><a href="http://192.168.1.32:9000/" className="hover:text-green-500">portainer</a></li>
-                        <li><a href="http://192.168.1.32:7575/" className="hover:text-green-500">dash</a></li>
+                        <li><a href="http://192.168.1.40:3000/" className="hover:text-green-500">dokploy</a></li>
+                        <li><a href="http://192.168.1.40:9000/" className="hover:text-green-500">portainer</a></li>
                     </ul>
 
                     <ul className="red flex-1 flex flex-col items-center text-[#adadad] hover:text-white ">
@@ -120,18 +118,20 @@ export default function Home() {
                         <li><a href="https://mydramalist.com/dramalist/Cyadine" className="hover:text-red-500">mydramalist</a></li>
                         <li><a href="https://anilist.co/home" className="hover:text-red-500">anilist</a></li>
                         <li><a href="http://192.168.1.32:9900/" className="hover:text-red-500">mango</a></li>
-                        
                     </ul>
 
                     <ul className="yellow flex-1 flex flex-col items-center text-[#adadad] hover:text-white ">
                         <li className='mb-2'>Others</li>
                         <li><a href="https://monkeytype.com/" className="hover:text-yellow-500">monkeytype</a></li>
-                        <li><a href="https://www.duolingo.com/" className="hover:text-yellow-500">duolingo</a></li>
-                        <li><a href="https://papago.naver.com/" className="hover:text-yellow-500">papago</a></li>
                         <li><a href="https://www.deeplol.gg/summoner/EUW/Long%20time%20no%20see-jisu" className="hover:text-yellow-500">deeplol</a></li>
                         <li><a href="https://tracker.gg/valorant/profile/riot/Long%20time%20no%20see%23jisu/overview" className="hover:text-yellow-500">tracker.gg</a></li>
-                        <li><a href="https://online-go.com/" className="hover:text-yellow-500">OGS</a></li>
                         
+                    </ul>
+                    <ul className="yellow flex-1 flex flex-col items-center text-[#adadad] hover:text-white ">
+                        <li className='mb-2'>Learning</li>
+                        <li><a href="https://www.duolingo.com/" className="hover:text-purple-500">duolingo</a></li>
+                        <li><a href="https://papago.naver.com/" className="hover:text-purple-500">papago</a></li>
+                        <li><a href="https://www.lifeofdiscipline.com/my-habits" className="hover:text-purple-500">lod</a></li>
                     </ul>
                 </nav>
 
