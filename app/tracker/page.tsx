@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState, FormEvent, useRef } from 'react';
 import Image from "next/image";
-import HabitTracker from '@/components/HabitTracker';
 import LeagueStats from '@/components/LeagueStats';
 
 
