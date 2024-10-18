@@ -57,7 +57,7 @@ const LeagueStats: React.FC = () => {
 
     const fetchChampions = async () => {
         try {
-            const response = await fetch(`http://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/champion.json`);
+            const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/champion.json`);
             if (!response.ok) {
                 throw new Error('Failed to fetch champions data');
             }
@@ -190,7 +190,7 @@ const LeagueStats: React.FC = () => {
                 <>
                     <div className="flex-shrink-0 mr-4">
                         <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/champion/${champions[kdaInfo.championId]?.id}.png`}
+                            src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/champion/${champions[kdaInfo.championId]?.id}.png`}
                             alt={champions[kdaInfo.championId]?.name}
                             className="w-16 h-16 rounded-md"
                         />
