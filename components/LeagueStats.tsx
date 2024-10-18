@@ -88,12 +88,7 @@ const LeagueStats: React.FC = () => {
 
         try {
             const matchIdResponse = await fetch(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1`,
-                {headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Origin": "https://zvbt.space",
-                    "X-Riot-Token": apiKey
-                }}
+                `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1&api_key=${apiKey}`
             );
 
             if (!matchIdResponse.ok) {
@@ -104,12 +99,7 @@ const LeagueStats: React.FC = () => {
             const lastMatchId = matchIds[0];
 
             const matchDetailsResponse = await fetch(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}`,
-                {headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Origin": "https://zvbt.space",
-                    "X-Riot-Token": apiKey
-                }}
+                `https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}?api_key=${apiKey}`
             );
 
             if (!matchDetailsResponse.ok) {
