@@ -88,18 +88,31 @@ const LeagueStats: React.FC = () => {
 
         try {
             const matchIdResponse = await fetch(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1&api_key=${apiKey}`
+                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1`,
+                {
+                    headers: {
+                        "X-Riot-Token": apiKey, // Your Riot API key
+                        "Origin": "https://dev2.zvbt.space" // Optional, can help if CORS issues arise
+                    }
+                }
             );
-
+            
             if (!matchIdResponse.ok) {
                 throw new Error(`Failed to fetch match IDs: ${matchIdResponse.statusText}`);
             }
+            
 
             const matchIds: string[] = await matchIdResponse.json();
             const lastMatchId = matchIds[0];
 
             const matchDetailsResponse = await fetch(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}?api_key=${apiKey}`
+                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}`,
+                {
+                    headers: {
+                        "X-Riot-Token": apiKey, // Your Riot API key
+                        "Origin": "https://dev2.zvbt.space" // Optional, can help if CORS issues arise
+                    }
+                }
             );
 
             if (!matchDetailsResponse.ok) {
@@ -237,7 +250,7 @@ const LeagueStats: React.FC = () => {
                     </div>
                 </>
             ) : (
-                <p>Loading...</p>
+                <p> </p>
             )}
         </div>
     );
