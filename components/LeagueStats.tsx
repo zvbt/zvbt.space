@@ -88,7 +88,14 @@ const LeagueStats: React.FC = () => {
 
         try {
             const matchIdResponse = await fetch(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1&api_key=${apiKey}`
+                `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1`,
+                {headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0",
+                    "Accept-Language": "en-US,en;q=0.5",
+                    "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
+                    "Origin": "https://zvbt.space",
+                    "X-Riot-Token": apiKey
+                }}
             );
 
             if (!matchIdResponse.ok) {
@@ -99,7 +106,14 @@ const LeagueStats: React.FC = () => {
             const lastMatchId = matchIds[0];
 
             const matchDetailsResponse = await fetch(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}?api_key=${apiKey}`
+                `https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}`,
+                {headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0",
+                    "Accept-Language": "en-US,en;q=0.5",
+                    "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
+                    "Origin": "https://zvbt.space",
+                    "X-Riot-Token": apiKey
+                }}
             );
 
             if (!matchDetailsResponse.ok) {
