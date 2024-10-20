@@ -10,7 +10,7 @@ interface Participant {
     pentaKills: number;
     quadraKills: number;
     tripleKills: number;
-    win: boolean; // Add this to track win/loss
+    win: boolean;
 }
 
 interface MatchDetails {
@@ -43,14 +43,16 @@ interface KDA {
     tripleKills: number;
     gameDate: string;
     queueId: number;
-    win: boolean; // Add win property
+    win: boolean;
 }
 
-const puuid = process.env.NEXT_PUBLIC_PUUID;
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const patchVersion = process.env.NEXT_PUBLIC_LOL_PATCH;
+const summonerName = process.env.NEXT_PUBLIC_USERNAME;
+const summonerTagline = process.env.NEXT_PUBLIC_TAGLINE;
+
 
 const LeagueStats: React.FC = () => {
+    const [puuid, setPuuid] = useState<string | null>(null);
     const [kdaInfo, setKdaInfo] = useState<KDA | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [champions, setChampions] = useState<Record<number, Champion>>({});
@@ -80,37 +82,56 @@ const LeagueStats: React.FC = () => {
         }
     };
 
+    const fetchSummonerPuuid = async () => {
+        try {
+            const response = await fetch(
+                `https://proxy.zvbt.space/https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summonerName}/${summonerTagline}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+                {
+                    headers: {
+                        "Origin": "https://proxy.zvbt.space"
+                    }
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch summoner data');
+            }
+
+            const summonerData = await response.json();
+            setPuuid(summonerData.puuid);
+        } catch (err) {
+            setError('Error fetching PUUID: ' + (err instanceof Error ? err.message : 'Unknown error'));
+        }
+    };
+
     const fetchKDA = async () => {
-        if (!puuid || !apiKey) {
+        if (!puuid) {
             setError('API key or PUUID is not set.');
             return;
         }
 
         try {
             const matchIdResponse = await fetch(
-                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1`,
+                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
                 {
                     headers: {
-                        "X-Riot-Token": apiKey, // Your Riot API key
-                        "Origin": "https://dev2.zvbt.space" // Optional, can help if CORS issues arise
+                        "Origin": "https://proxy.zvbt.space"
                     }
                 }
             );
-            
+
             if (!matchIdResponse.ok) {
                 throw new Error(`Failed to fetch match IDs: ${matchIdResponse.statusText}`);
             }
-            
 
             const matchIds: string[] = await matchIdResponse.json();
             const lastMatchId = matchIds[0];
 
             const matchDetailsResponse = await fetch(
-                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}`,
+                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
                 {
                     headers: {
-                        "X-Riot-Token": apiKey, // Your Riot API key
-                        "Origin": "https://dev2.zvbt.space" // Optional, can help if CORS issues arise
+                        "Origin": "https://proxy.zvbt.space"
                     }
                 }
             );
@@ -136,9 +157,8 @@ const LeagueStats: React.FC = () => {
                 const pentaKills = yourParticipant.pentaKills || 0;
                 const quadraKills = yourParticipant.quadraKills || 0;
                 const tripleKills = yourParticipant.tripleKills || 0;
-                const win = yourParticipant.win; // Get win/lose status
+                const win = yourParticipant.win;
 
-                // Format the game date from the gameCreation timestamp
                 const gameDate = new Date(matchDetails.info.gameCreation).toLocaleDateString();
 
                 setKdaInfo({
@@ -155,7 +175,7 @@ const LeagueStats: React.FC = () => {
                     tripleKills,
                     gameDate,
                     queueId,
-                    win, // Store win/lose status
+                    win,
                 });
             } else {
                 setError('Participant not found!');
@@ -165,6 +185,17 @@ const LeagueStats: React.FC = () => {
             setError('Error fetching KDA: ' + errorMessage);
         }
     };
+
+    useEffect(() => {
+        fetchChampions();
+        fetchSummonerPuuid(); // Fetch PUUID first
+    }, []);
+
+    useEffect(() => {
+        if (puuid) {
+            fetchKDA(); // Fetch KDA after PUUID is retrieved
+        }
+    }, [puuid]);
 
     const getGameModeLabelByQueueId = (queueId: number) => {
         switch (queueId) {
@@ -185,11 +216,6 @@ const LeagueStats: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        fetchChampions(); 
-        fetchKDA(); 
-    }, []);
-
     const formatGameDuration = (seconds: number) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
@@ -197,7 +223,7 @@ const LeagueStats: React.FC = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto mt-5 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md flex">
+        <div className="max-w-lg mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md flex">
             {error && <p className="text-red-500">{error}</p>}
             {kdaInfo ? (
                 <>
@@ -232,7 +258,7 @@ const LeagueStats: React.FC = () => {
                             <div className="relative group">
                                 <p className="text-red-500">
                                     {kdaInfo.pentaKills > 0
-                                        ? 'Penta Kill'
+                                        ? '🔥 Penta Kill'
                                         : kdaInfo.quadraKills > 0
                                         ? 'Quadra Kill'
                                         : kdaInfo.tripleKills > 0
@@ -250,7 +276,7 @@ const LeagueStats: React.FC = () => {
                     </div>
                 </>
             ) : (
-                <p> </p>
+                <p>Loading...</p>
             )}
         </div>
     );
