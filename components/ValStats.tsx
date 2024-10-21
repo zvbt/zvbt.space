@@ -87,21 +87,9 @@ const ValorantStats: React.FC = () => {
     }, []);
 
     return (
-        <div className="max-w-lg mx-auto mt-5 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md">
+        <div className="max-w-lg mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md">
             {error && <p className="text-red-500">{error}</p>}
-            {playerStats ? (
-                <div>
-                    <h2 className="text-lg font-bold">{playerStats.character}</h2>
-                    <p>Kills: {playerStats.kills}</p>
-                    <p>Deaths: {playerStats.deaths}</p>
-                    <p>Assists: {playerStats.assists}</p>
-                    <p>Score: {playerStats.score}</p>
-                    <p>Team: {playerStats.team}</p>
-                    {/* Add more details and formatting as needed */}
-                </div>
-            ) : (
-                <p> </p>
-            )}
+            
         </div>
     );
 };
