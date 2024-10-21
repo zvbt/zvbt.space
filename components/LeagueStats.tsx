@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface Participant {
     puuid: string;
@@ -64,6 +66,7 @@ interface KDA {
 const patchVersion = process.env.NEXT_PUBLIC_LOL_PATCH;
 const summonerName = process.env.NEXT_PUBLIC_USERNAME;
 const summonerTagline = process.env.NEXT_PUBLIC_TAGLINE;
+const proxy = process.env.NEXT_PUBLIC_PROXY;
 
 
 const LeagueStats: React.FC = () => {
@@ -100,7 +103,7 @@ const LeagueStats: React.FC = () => {
     const fetchSummonerPuuid = async () => {
         try {
             const response = await fetch(
-                `https://proxy.zvbt.space/https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summonerName}/${summonerTagline}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+                `${proxy}https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summonerName}/${summonerTagline}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
                 {
                     headers: {
                         "Origin": "https://proxy.zvbt.space"
@@ -127,7 +130,7 @@ const LeagueStats: React.FC = () => {
 
         try {
             const matchIdResponse = await fetch(
-                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+                `${proxy}https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
                 {
                     headers: {
                         "Origin": "https://proxy.zvbt.space"
@@ -143,7 +146,7 @@ const LeagueStats: React.FC = () => {
             const lastMatchId = matchIds[0];
 
             const matchDetailsResponse = await fetch(
-                `https://proxy.zvbt.space/https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+                `${proxy}https://europe.api.riotgames.com/lol/match/v5/matches/${lastMatchId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
                 {
                     headers: {
                         "Origin": "https://proxy.zvbt.space"
@@ -234,11 +237,8 @@ const LeagueStats: React.FC = () => {
 
     useEffect(() => {
         fetchChampions();
-        fetchItems(); // Fetch item data
-        fetchSummonerPuuid(); // Fetch PUUID first
-    }, []);
-
-    useEffect(() => {
+        fetchItems();
+        fetchSummonerPuuid();
         if (puuid) {
             fetchKDA(); // Fetch KDA after PUUID is retrieved
         }
@@ -274,11 +274,15 @@ const LeagueStats: React.FC = () => {
             {error && <p className="text-red-500">{error}</p>}
             {kdaInfo ? (
                 <>
+                <Link href={`https://www.deeplol.gg/summoner/euw/${summonerName}-${summonerTagline}`} target='_blank' className='flex'>
                     <div className="flex-shrink-0 mr-4">
-                        <img
+                        <Image
                             src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/champion/${champions[kdaInfo.championId]?.id}.png`}
                             alt={champions[kdaInfo.championId]?.name}
                             className="w-16 h-16 rounded-md"
+                            width={64}
+                            height={64}
+                            quality={100}
                         />
                         <p className={`text-center text-sm font-bold border rounded-md mt-4 ${kdaInfo.win ? 'text-green-500' : 'text-red-500'}`}>
                             {kdaInfo.win ? 'Win' : 'Lose'}
@@ -332,6 +336,7 @@ const LeagueStats: React.FC = () => {
                             </div>
                         </div>
                     </div>
+                    </Link>
                 </>
             ) : (
                 <p>Loading...</p>
