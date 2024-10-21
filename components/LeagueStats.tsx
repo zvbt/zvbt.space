@@ -11,7 +11,15 @@ interface Participant {
     quadraKills: number;
     tripleKills: number;
     win: boolean;
+    item0: number;
+    item1: number;
+    item2: number;
+    item3: number;
+    item4: number;
+    item5: number;
+    item6: number;  // Boots item
 }
+
 
 interface MatchDetails {
     info: {
@@ -44,6 +52,13 @@ interface KDA {
     gameDate: string;
     queueId: number;
     win: boolean;
+    item0: number;
+    item1: number;
+    item2: number;
+    item3: number;
+    item4: number;
+    item5: number;
+    item6: number;  // Boots item
 }
 
 const patchVersion = process.env.NEXT_PUBLIC_LOL_PATCH;
@@ -176,6 +191,13 @@ const LeagueStats: React.FC = () => {
                     gameDate,
                     queueId,
                     win,
+                    item0: yourParticipant.item0,
+                    item1: yourParticipant.item1,
+                    item2: yourParticipant.item2,
+                    item3: yourParticipant.item3,
+                    item4: yourParticipant.item4,
+                    item5: yourParticipant.item5,
+                    item6: yourParticipant.item6,
                 });
             } else {
                 setError('Participant not found!');
@@ -186,8 +208,33 @@ const LeagueStats: React.FC = () => {
         }
     };
 
+
+
+    const [items, setItems] = useState<Record<number, { name: string, image: { full: string } }>>({});
+
+    const fetchItems = async () => {
+        try {
+            const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/item.json`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch item data');
+            }
+            const data: { data: Record<string, { name: string, image: { full: string } }> } = await response.json();
+            const itemMap: Record<number, { name: string, image: { full: string } }> = {};
+
+            Object.keys(data.data).forEach(key => {
+                itemMap[parseInt(key)] = data.data[key];
+            });
+
+            setItems(itemMap);
+        } catch (err) {
+            setError('Error fetching items: ' + (err instanceof Error ? err.message : 'Unknown error'));
+        }
+    };
+
+
     useEffect(() => {
         fetchChampions();
+        fetchItems(); // Fetch item data
         fetchSummonerPuuid(); // Fetch PUUID first
     }, []);
 
@@ -236,6 +283,7 @@ const LeagueStats: React.FC = () => {
                         <p className={`text-center text-sm font-bold border rounded-md mt-4 ${kdaInfo.win ? 'text-green-500' : 'text-red-500'}`}>
                             {kdaInfo.win ? 'Win' : 'Lose'}
                         </p> 
+                        
                     </div>
                     <div className="flex-grow">
                         <div className="flex items-center justify-between">
@@ -252,9 +300,20 @@ const LeagueStats: React.FC = () => {
                             <p className="text-xl font-bold">/ {kdaInfo.assists}</p>
                             <p className="text-sm text-gray-400">{`${kdaInfo.kda} KDA`}</p>
                         </div>
+                        <div className='flex space-x-1'>
+                            {[kdaInfo.item0, kdaInfo.item1, kdaInfo.item2, kdaInfo.item3, kdaInfo.item4, kdaInfo.item5, kdaInfo.item6].map((itemId, index) => (
+                                    itemId !== 0 && items[itemId] ? (
+                                        <img
+                                            key={index}
+                                            src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/item/${items[itemId].image.full}`}
+                                            alt={items[itemId].name}
+                                            className="w-5 h-5 rounded-sm"
+                                        />
+                                    ) : null
+                                ))}
+                            </div>
                         <div className="mt-2 text-sm text-gray-300">
                             <p>Total Damage: {kdaInfo.totalDamage.toLocaleString()}</p>
-
                             <div className="relative group">
                                 <p className="text-red-500">
                                     {kdaInfo.pentaKills > 0
@@ -265,7 +324,6 @@ const LeagueStats: React.FC = () => {
                                         ? 'Triple Kill'
                                         : null}
                                 </p>
-
                                 <div className="absolute left-0 -top-8 p-2 w-40 bg-[#11111b3a] backdrop-blur-sm border text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
                                     {kdaInfo.tripleKills > 0 && <p>{kdaInfo.tripleKills}x Triple Kill</p>}
                                     {kdaInfo.quadraKills > 0 && <p>{kdaInfo.quadraKills}x Quadra Kill</p>}
