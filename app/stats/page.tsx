@@ -1,9 +1,8 @@
 'use client'
-import { useEffect, useState, FormEvent, useRef } from 'react';
 import Image from "next/image";
 import LeagueStats from '@/components/LeagueStats';
-import ValorantStats from '@/components/ValStats';
-
+import MDLStats from "@/components/MDLStats";
+import AnilistStats from "@/components/AnilistStats";
 
 export default function Home() {
     return (
@@ -12,14 +11,18 @@ export default function Home() {
 
             <div className="flex absolute space-x-2 m-4">
                 <div>
+                    <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>MyDramalist</p>
+                    <MDLStats />
+                </div>
+                <div>
+                    <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>Anilist</p>
+                    <AnilistStats />
+                </div>
+
+                <div>
                     <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>League Of Legends</p>
                     <LeagueStats />
                 </div>
-                {/* <div>
-                    <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>Valorant (SOON)</p>
-                    <ValorantStats />
-                </div> */}
-
             </div>
         </main>
     );
