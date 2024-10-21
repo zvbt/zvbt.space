@@ -59,7 +59,7 @@ const ValorantStats: React.FC = () => {
                 `https://proxy.zvbt.space/https://europe.api.riotgames.com/val/matches/${lastMatchId}`,
                 {
                     headers: {
-                        "X-Riot-Token": "RGAPI-d06a6b4d-9f3a-4390-aa30-6c9e93d0e52c",
+                        "X-Riot-Token": "YES",
                         "Origin": "https://dev2.zvbt.space"
                     }
                 }
