@@ -307,11 +307,13 @@ const LeagueStats: React.FC = () => {
                         <div className='flex space-x-1'>
                             {[kdaInfo.item0, kdaInfo.item1, kdaInfo.item2, kdaInfo.item3, kdaInfo.item4, kdaInfo.item5, kdaInfo.item6].map((itemId, index) => (
                                     itemId !== 0 && items[itemId] ? (
-                                        <img
+                                        <Image
                                             key={index}
                                             src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/item/${items[itemId].image.full}`}
                                             alt={items[itemId].name}
                                             className="w-5 h-5 rounded-sm"
+                                            height={20}
+                                            width={20}
                                         />
                                     ) : null
                                 ))}
