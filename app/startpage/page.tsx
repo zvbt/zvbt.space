@@ -2,7 +2,6 @@
 import { useEffect, useState, FormEvent, useRef } from 'react';
 import Image from "next/image";
 import NoteTaking from "@/components/NoteTaking";
-import Clock from "@/components/clock";
 import "./main.css"
 import AudioPlayer from "@/components/AudioPlayer";
 
@@ -29,7 +28,7 @@ export default function Home() {
             const url = query.startsWith('http') ? query : `http://${query}`;
             window.location.href = url;
         } else {
-            const searchUrl = `https://dgg.gg/?q=${encodeURIComponent(query)}`;
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
             window.location.href = searchUrl;
         }
     };
