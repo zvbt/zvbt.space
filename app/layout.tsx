@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Color_Emoji } from "next/font/google";
+import { Inter, Noto_Color_Emoji, Karla } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const noto = Noto_Color_Emoji({ subsets: ["emoji"], weight: "400" });
-
+const karla = Karla({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "zvbt.space",
-  description: "Personal website with all my projects",
+  description: "Personal website featuring all my projects and useful tools.",
+  keywords: ["zvbt", "cyadine"],
+  robots: "index, follow",
 };
 
 export default function RootLayout({
@@ -17,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={karla.className}>{children}</body>
     </html>
   );
 }
