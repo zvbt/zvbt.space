@@ -40,10 +40,10 @@ const AnilistStats: React.FC = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md">
+        <div className="w-[340px] h-[160px] mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md">
             {error && <p className="text-red-500">{error}</p>}
             {entry ? (
-                <div className="pt-1.5 mb-2">
+                <div className="pt-4 mb-2">
                     <Link href={entry.media.siteUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-4">
                         <Image
                             src={entry.media.coverImage.extraLarge}

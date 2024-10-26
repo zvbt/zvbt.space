@@ -35,18 +35,20 @@ const MDLStats: React.FC = () => {
     }, []);
 
     return (
-        <div className="max-w-lg mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md">
+        <div className="w-[340px] h-[160px] mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md">
             {error && <p className="text-red-500">{error}</p>}
             {dramaList ? (
                 <div>
                     {dramaList.map((drama, index) => (
-                        <div key={index} className="pt-1.5 mb-2">
+                        <div key={index} className="pt-4 mb-2">
                             <Link href={drama.dramaUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-4">
-                                <Image src={drama.poster} alt={drama.title} className="w-16 h-24 object-center rounded-md" width={64} height={96} quality={100}/>
+                                <Image src={drama.poster} alt={drama.title} className="w-16 h-24 object-center rounded-md" width={64} height={96} quality={100} />
                                 <div>
                                     <h3 className="text-md font-semibold">{drama.title}</h3>
                                     <p className="text-sm text-gray-400">{drama.episode}</p>
-                                    <p className="text-sm text-gray-400">Watched {drama.lastUpdateTime}</p>
+                                    <p className="text-sm text-gray-400">
+                                        {drama.episode === "Plan to watch" ? `Added ${drama.lastUpdateTime}` : `Watched ${drama.lastUpdateTime}`}
+                                    </p>
                                 </div>
                             </Link>
                         </div>

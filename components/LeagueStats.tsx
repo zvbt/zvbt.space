@@ -270,7 +270,7 @@ const LeagueStats: React.FC = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md flex">
+        <div className="w-[340px] h-[160px] mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md flex">
             {error && <p className="text-red-500">{error}</p>}
             {kdaInfo ? (
                 <>
@@ -292,7 +292,7 @@ const LeagueStats: React.FC = () => {
                     <div className="flex-grow">
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-bold">{getGameModeLabelByQueueId(kdaInfo.queueId)}</h2>
-                            <div className="flex flex-col items-end pl-4">
+                            <div className="flex flex-col items-end pl-3.5">
                                 <p className="text-[10px] text-gray-400">Played at {kdaInfo.gameDate}</p>
                                 <p className="text-[10px] text-gray-400">Duration {formatGameDuration(kdaInfo.gameDuration)}</p>
                             </div>
@@ -334,6 +334,7 @@ const LeagueStats: React.FC = () => {
                                     {kdaInfo.tripleKills > 0 && <p>{kdaInfo.tripleKills}x Triple Kill</p>}
                                     {kdaInfo.quadraKills > 0 && <p>{kdaInfo.quadraKills}x Quadra Kill</p>}
                                     {kdaInfo.pentaKills > 0 && <p>{kdaInfo.pentaKills}x Penta Kill</p>}
+
                                 </div>
                             </div>
                         </div>
