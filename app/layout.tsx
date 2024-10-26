@@ -18,6 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="shortcut icon" href="planet.png" type="image/x-icon" />
       <body className={karla.className}>{children}</body>
     </html>
   );
