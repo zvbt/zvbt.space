@@ -21,7 +21,7 @@ const PomodoroTimer = () => {
   }, [isActive, timeLeft, isBreak]);
 
   useEffect(() => {
-    document.title = `${formatTime(timeLeft)} - ${isBreak ? 'Break' : 'Work'}`;
+    document.title = `${formatTime(timeLeft)} - ${isBreak ? 'Break | zvbt.space' : 'Work | zvbt.space'}`;
   }, [timeLeft, isBreak]);
 
   const toggleTimer = () => {
