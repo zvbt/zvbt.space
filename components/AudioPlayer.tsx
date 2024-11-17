@@ -8,7 +8,7 @@ interface AudioPlayerProps {
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
   const [sound, setSound] = useState<Howl | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.01); // Set initial volume to 10%
+  const [volume, setVolume] = useState(0.01);
 
   useEffect(() => {
     const newSound = new Howl({

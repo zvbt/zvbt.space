@@ -28,7 +28,7 @@ export default function Home() {
             const url = query.startsWith('http') ? query : `http://${query}`;
             window.location.href = url;
         } else {
-            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
             window.location.href = searchUrl;
         }
     };
