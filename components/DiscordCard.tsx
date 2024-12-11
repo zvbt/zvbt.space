@@ -17,6 +17,7 @@ interface DiscordCardProps {
     game?: any;
     spotify?: any;
     progress?: any;
+    Decoration?: any;
 }
 
 const DiscordCard: React.FC<DiscordCardProps> = ({
@@ -27,7 +28,8 @@ const DiscordCard: React.FC<DiscordCardProps> = ({
     flag,
     game,
     spotify,
-    progress
+    progress,
+    Decoration
 }) => {
     const capitalize = (str: string) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -44,6 +46,14 @@ const DiscordCard: React.FC<DiscordCardProps> = ({
                      <Icons.external className="w-5 h-5"/> 
                     </div>
                     </a>
+                    <img
+                            src={Decoration}
+                            width={64}
+                            height={64}
+                            draggable={false}
+                            alt="discord_avatar"
+                            className="rounded-full fixed"
+                        />
                         <img
                             src={Image}
                             width={64}

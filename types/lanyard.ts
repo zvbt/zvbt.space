@@ -5,6 +5,9 @@ export type LanyardResponse = {
       avatar: string,
       id: string,
       display_name: string,
+      avatar_decoration_data:{
+        asset: string
+      }
     },
     activities: {
       [0]:{
