@@ -38,11 +38,11 @@ const ValorantStats: React.FC = () => {
         try {
             // Fetch match IDs
             const matchIdResponse = await fetch(
-                `https://proxy.zvbt.space/https://europe.api.riotgames.com/val/matches/by-puuid/${puuid}/ids?start=0&count=1`,
+                `https://proxy.zvbt.cc/https://europe.api.riotgames.com/val/matches/by-puuid/${puuid}/ids?start=0&count=1`,
                 {
                     headers: {
                         "X-Riot-Token": "RGAPI-d06a6b4d-9f3a-4390-aa30-6c9e93d0e52c",
-                        "Origin": "https://dev2.zvbt.space"
+                        "Origin": "https://dev2.zvbt.cc"
                     }
                 }
             );
@@ -56,11 +56,11 @@ const ValorantStats: React.FC = () => {
 
             // Fetch match details
             const matchDetailsResponse = await fetch(
-                `https://proxy.zvbt.space/https://europe.api.riotgames.com/val/matches/${lastMatchId}`,
+                `https://proxy.zvbt.cc/https://europe.api.riotgames.com/val/matches/${lastMatchId}`,
                 {
                     headers: {
                         "X-Riot-Token": "YES",
-                        "Origin": "https://dev2.zvbt.space"
+                        "Origin": "https://dev2.zvbt.cc"
                     }
                 }
             );

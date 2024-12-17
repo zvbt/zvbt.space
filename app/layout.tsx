@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 const karla = Karla({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "zvbt.space",
+  title: "zvbt.cc",
   description: "Personal website featuring all my projects and useful tools.",
   keywords: ["zvbt", "cyadine"],
   robots: "index, follow",

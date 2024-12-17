@@ -3,7 +3,7 @@ const ID = process.env.DISCORD_ID;
 
 export async function lanyard() {
   const resp = await fetch(
-    `https://lanyard.zvbt.space/v1/users/${ID}`,
+    `https://lanyard.zvbt.cc/v1/users/${ID}`,
     {
       cache: "no-cache",
     }

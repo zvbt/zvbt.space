@@ -19,7 +19,7 @@ const MDLStats: React.FC = () => {
 
     const fetchDramaData = async () => {
         try {
-            const response = await fetch(`${proxy}https://mdl.zvbt.space/data?username=${mdlUsername}`);
+            const response = await fetch(`${proxy}https://mdl.zvbt.cc/data?username=${mdlUsername}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch drama data');
             }
