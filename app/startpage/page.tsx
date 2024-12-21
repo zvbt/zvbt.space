@@ -17,22 +17,37 @@ export default function Home() {
         inputRef.current?.focus();
     }, []);
 
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        const query = inputRef.current?.value;
-        if (!query) return;
+    const handleKeyPress = (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const query = inputRef.current?.value;
+            if (!query) return;
 
-        const urlPattern = /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+            const urlPattern = /^((https?:\/\/)?[\da-z.-]+\.[a-z.]{2,6}([\/\w .-]*)*\/?)$/;
+            const isCtrlPressed = event.ctrlKey; // Check for Ctrl key
 
-        if (urlPattern.test(query)) {
-            const url = query.startsWith('http') ? query : `http://${query}`;
-            window.location.href = url;
-        } else {
-            const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
-            window.location.href = searchUrl;
+            if (urlPattern.test(query)) {
+                const url = query.startsWith('https://')
+                    ? query
+                    : `https://${query.replace(/^https?:\/\//, '')}`;
+                if (isCtrlPressed) {
+                    // open in new tabs witch ctrl+enter
+                    window.open(url, '_blank');
+                } else {
+                    window.location.href = url;
+                }
+            } else {
+                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                if (isCtrlPressed) {
+                    // open in new tabs witch ctrl+enter
+                    window.open(searchUrl, '_blank');
+                } else {
+                    window.location.href = searchUrl;
+                }
+            }
         }
     };
-
+    
 
     const [currentImage, setCurrentImage] = useState('/img/side1.gif');
     const [imageKey, setImageKey] = useState(0); // force re-render of image
@@ -92,7 +107,7 @@ export default function Home() {
                 </div>
        
                 <header className='mt-20 mb-10 text-[40px]'>
-                    <h1 className='font-normal text-[#FEFFFA] relative text-center'>Hello, <span className="text-[#0972D6]">시아딘</span></h1>
+                    <h1 className='font-normal text-[#FEFFFA] relative text-center'>Hello, <span className="text-[#701F26]">시아딘</span></h1>
                 </header>
 
                 <nav className="flex justify-center">
@@ -139,18 +154,20 @@ export default function Home() {
 
             <div className="flex justify-center my-[-4.5em]">
             <div className="w-[1070px]">
-            <form onSubmit={handleSubmit} className="">
-                <input 
-                    type="text" 
-                    name="q" 
-                    placeholder="서치" 
-                    ref={inputRef}
-                    className="font-iosevka text-lg text-center w-[1070px] px-4 py-2 border border-[#232328] bg-[#18181D] focus:outline-none text-white placeholder-[#adadad] hover:placeholder-white"
-                />
-            </form>
+            <form onSubmit={(e) => e.preventDefault()} className="">
+                            <input
+                                type="text"
+                                name="q"
+                                placeholder="서치"
+                                ref={inputRef}
+                                onKeyDown={handleKeyPress}
+                                className="font-iosevka text-lg text-center w-[1070px] px-4 py-2 border border-[#232328] bg-[#18181D] focus:outline-none text-white placeholder-[#adadad] hover:placeholder-white"
+                            />
+                        </form>
             </div>
         </div>
         </body>
         </main>
     );
 }
+
