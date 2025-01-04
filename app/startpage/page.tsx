@@ -51,7 +51,7 @@ export default function Home() {
 
     const [currentImage, setCurrentImage] = useState('/img/side1.gif');
     const [imageKey, setImageKey] = useState(0); // force re-render of image
-    const imageCount = 23; // number of GIFs
+    const imageCount = 26; // number of GIFs
 
     useEffect(() => {
         const updateClock = (): void => {
