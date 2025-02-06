@@ -21,14 +21,27 @@ function cn(...inputs: ClassValue[]) {
 
 export default async function Home() {
   const { discord_user: user, discord_status: status, activities: bio, listening_to_spotify, spotify } = await lanyard();
-  let start = 0;
-  let end = 0;
-  if (listening_to_spotify == true) {
-    start = spotify.timestamps.start;
-    end = spotify.timestamps.end;
-  }
-  const flag = bio[0] && bio[0].state ? `${bio[0].emoji?.name || ''} ${bio[0].state}`.trim() : bio[0]?.emoji?.name || bio[0]?.state || ' ';
-  const parsedFlag = parseEmojis(flag);
+
+let start = 0;
+let end = 0;
+if (listening_to_spotify) {
+  start = spotify.timestamps.start;
+  end = spotify.timestamps.end;
+}
+
+// Find the first game (type 0), if any
+const gameActivity = bio?.find(activity => activity.type === 0);
+const gameText = gameActivity ? `Playing ${gameActivity.name}` : '';
+
+// Find the custom status (type 4), if any
+const flagActivity = bio?.find(activity => activity.type === 4);
+const flag = flagActivity?.state
+  ? `${flagActivity.emoji?.name || ''} ${flagActivity.state}`.trim()
+  : flagActivity?.emoji?.name || flagActivity?.state || ' ';
+
+const parsedFlag = parseEmojis(flag);
+
+
 
   //Unsplash
   const unsplashData = await unsplash();
@@ -40,7 +53,12 @@ export default async function Home() {
 
 
   //Github card
-  let github = await githubapi()
+  let github = await githubapi();
+  if (!github || Object.keys(github).length === 0) {
+    console.error("GitHub API returned empty or null data");
+    github = {}; // Avoid breaking the app
+  }
+  
   let animeclient = null;
   for (const key in github) {
     if (github[key].name === 'AnimeClient') {
@@ -84,9 +102,6 @@ export default async function Home() {
     }
   }
 
-
-
-
   return (
     <main>
       <Image src={randomImg} width={1920} height={1080} className='absolute object-cover w-full h-full blur-sm z-1' draggable={false} alt='bg' quality={100} />
@@ -107,7 +122,7 @@ export default async function Home() {
             ? `https://cdn.discordapp.com/avatar-decoration-presets/${user.avatar_decoration_data.asset}`
             : 'https://cdn.discordapp.com/avatar-decoration-presets/a_13913a00bd9990ab4102a3bf069f0f3f'} // Fallback URL
           flag={<span dangerouslySetInnerHTML={{ __html: parsedFlag }} />}
-          game={bio[1]?.name && bio[1].name !== 'Spotify' ? `Playing ${bio[1].name}` : ' '}
+          game={gameText || ' '}
           spotify={listening_to_spotify !== false ? (
             <div>
               <p className="text-[#a6d189]">Listening to Spotify</p>
@@ -134,17 +149,20 @@ export default async function Home() {
 
 
       <div className="flex flex-col items-center justify-center lg:flex-row lg:flex-wrap z-50">
-        {[animeclient, ongaku, mdl, viki, pihole, site].map(repo => (
-          <GithubCard
-            key={repo.name}
-            reponame={repo.name}
-            description={repo.description}
-            language={repo.language}
-            star={repo.stargazers_count}
-            link={repo.html_url}
-            homepage={repo.homepage}
-          />
-        ))}
+        {[animeclient, ongaku, mdl, viki, pihole, site]
+          .filter(repo => repo !== null)
+          .map(repo => (
+            <GithubCard
+              key={repo.name}
+              reponame={repo.name}
+              description={repo.description}
+              language={repo.language}
+              star={repo.stargazers_count}
+              link={repo.html_url}
+              homepage={repo.homepage}
+            />
+          ))}
+
       </div>
     </main>
   );
