@@ -30,14 +30,18 @@ if (listening_to_spotify) {
 }
 
 // Find the first game (type 0), if any
-const gameActivity = bio?.find(activity => activity.type === 0);
+const activitiesArray = Array.isArray(bio) ? bio : Object.values(bio);
+
+// Find the first game (type 0), if any
+const gameActivity = activitiesArray.find(activity => activity.type === 0);
 const gameText = gameActivity ? `Playing ${gameActivity.name}` : '';
 
 // Find the custom status (type 4), if any
-const flagActivity = bio?.find(activity => activity.type === 4);
+const flagActivity = activitiesArray.find(activity => activity.type === 4);
 const flag = flagActivity?.state
   ? `${flagActivity.emoji?.name || ''} ${flagActivity.state}`.trim()
   : flagActivity?.emoji?.name || flagActivity?.state || ' ';
+
 
 const parsedFlag = parseEmojis(flag);
 
