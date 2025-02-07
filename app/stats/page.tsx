@@ -3,6 +3,7 @@ import Image from "next/image";
 import LeagueStats from '@/components/LeagueStats';
 import MDLStats from "@/components/MDLStats";
 import AnilistStats from "@/components/AnilistStats";
+import WakaTimeStats from "@/components/WakatimeStats";
 
 export default function Home() {
     return (
@@ -22,6 +23,10 @@ export default function Home() {
                 <div>
                     <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>League Of Legends</p>
                     <LeagueStats />
+                </div>
+                <div>
+                    <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>Wakatime</p>
+                    <WakaTimeStats />
                 </div>
             </div>
         </main>
