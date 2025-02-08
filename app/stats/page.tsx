@@ -4,6 +4,7 @@ import LeagueStats from '@/components/LeagueStats';
 import MDLStats from "@/components/MDLStats";
 import AnilistStats from "@/components/AnilistStats";
 import WakaTimeStats from "@/components/WakatimeStats";
+import Wasted from "@/components/Wasted";
 
 export default function Home() {
     return (
@@ -27,6 +28,10 @@ export default function Home() {
                 <div>
                     <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>Wakatime</p>
                     <WakaTimeStats />
+                </div>
+                <div>
+                    <p className='max-w-lg p-2 bg-[#11111bc2] text-white rounded-lg shadow-md flex'>Wasted Hours</p>
+                    <Wasted />
                 </div>
             </div>
         </main>
