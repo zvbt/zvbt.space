@@ -24,20 +24,26 @@ const AnilistStats: React.FC = () => {
         fetchAniListData();
     }, []);
 
-    // Helper function to get the relative time in days
-    const getRelativeTime = (timestamp: number) => {
-        const now = new Date();
-        const updatedAtDate = new Date(timestamp * 1000); // Convert seconds to milliseconds
-        const differenceInDays = Math.floor((now.getTime() - updatedAtDate.getTime()) / (1000 * 60 * 60 * 24));
-
-        if (differenceInDays === 0) {
-            return 'Today';
-        } else if (differenceInDays === 1) {
-            return '1 day ago';
-        } else {
-            return `${differenceInDays} days ago`;
-        }
-    };
+    // Helper function to get a dynamic relative time format
+function getRelativeTime(unix: EpochTimeStamp, showAgo?: Boolean) {
+    const date = new Date();
+    const timestamp = date.getTime();
+    const seconds = Math.floor(timestamp / 1000);
+    const difference = seconds - unix;
+    if (difference < 60) {
+      return `${difference}s ${showAgo ? " ago" : ""}`;
+    } else if (difference < 3600) {
+      return `${Math.floor(difference / 60)}m ${showAgo ? " ago" : ""}`;
+    } else if (difference < 86400) {
+      return `${Math.floor(difference / 3600)}h ${showAgo ? " ago" : ""}`;
+    } else if (difference < 2620800) {
+      return `${Math.floor(difference / 86400)}d ${showAgo ? " ago" : ""}`;
+    } else if (difference < 31449600) {
+      return `${Math.floor(difference / 2620800)}mo ${showAgo ? " ago" : ""}`;
+    } else {
+      return `${Math.floor(difference / 31449600)}y ${showAgo ? " ago" : ""}`;
+    }
+  }
 
     return (
         <div className="w-[340px] h-[160px] mx-auto mt-2 p-4 bg-[#11111bc2] text-white rounded-lg shadow-md">
@@ -56,7 +62,7 @@ const AnilistStats: React.FC = () => {
                         <div>
                             <h3 className="text-md font-semibold">{entry.media.title.userPreferred}</h3>
                             <p className="text-sm text-gray-400">Episodes: {entry.progress}</p>
-                            <p className="text-sm text-gray-400">Watched {getRelativeTime(entry.updatedAt)}</p>
+                            <p className="text-sm text-gray-400">Watched {getRelativeTime(entry.updatedAt, true)}</p>
                         </div>
                     </Link>
                 </div>
