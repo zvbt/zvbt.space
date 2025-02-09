@@ -77,7 +77,7 @@ const LeagueStats: React.FC = () => {
 
     const fetchChampions = async () => {
         try {
-            const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/champion.json`);
+            const response = await fetch(`${proxy}https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/champion.json`);
             if (!response.ok) {
                 throw new Error('Failed to fetch champions data');
             }
@@ -217,7 +217,7 @@ const LeagueStats: React.FC = () => {
 
     const fetchItems = async () => {
         try {
-            const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/item.json`);
+            const response = await fetch(`${proxy}https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/item.json`);
             if (!response.ok) {
                 throw new Error('Failed to fetch item data');
             }
