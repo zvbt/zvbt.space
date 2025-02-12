@@ -16,7 +16,8 @@ const gameDataMap: Record<string, { name: string; logo: string }> = {
     "client-win64-shipping.exe": { name: "Wuthering Waves", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/m5xb9s54.png" },
     "league of legends.exe": { name: "League of Legends", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/2hwj3fjq.png" },
     "zenlesszonezero.exe": { name: "Zenless Zone Zero", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/6ildclww.png" },
-    "valorant-win64-shipping.exe": { name: "Valorant", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/5ncyjm2p.png" }
+    "valorant-win64-shipping.exe": { name: "Valorant", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/5ncyjm2p.png" },
+    "cs2.exe": { name: "Counter-Strike 2", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/bnqrf9kv.webp" }
 };
 
 const Wasted: React.FC = () => {
