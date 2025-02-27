@@ -37,7 +37,7 @@ export default function Home() {
                     window.location.href = url;
                 }
             } else {
-                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                const searchUrl = `https://unduck.link?q=${encodeURIComponent(query)}`;
                 if (isCtrlPressed) {
                     // open in new tabs witch ctrl+enter
                     window.open(searchUrl, '_blank');
@@ -96,8 +96,6 @@ export default function Home() {
             <title>New Tab</title>
             <link rel="icon" href="/planet.png" />
             <NoteTaking />
-
-           
 
             <div className="inline-block border border-[#232328] relative -top-[100px] w-[770px] h-[600px] -left-[200px] right-0 mx-auto bg-[#18181D] text-center">
                 <div className="border border-solid border-[#232328] absolute top-[-1px] w-[300px] h-[600px] left-[770px] bg-[#18181D] bg-center bg-no-repeat bg-cover">
