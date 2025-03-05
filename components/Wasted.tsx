@@ -17,7 +17,8 @@ const gameDataMap: Record<string, { name: string; logo: string }> = {
     "league of legends.exe": { name: "League of Legends", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/2hwj3fjq.png" },
     "zenlesszonezero.exe": { name: "Zenless Zone Zero", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/6ildclww.png" },
     "valorant-win64-shipping.exe": { name: "Valorant", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/5ncyjm2p.png" },
-    "cs2.exe": { name: "Counter-Strike 2", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/bnqrf9kv.webp" }
+    "cs2.exe": { name: "Counter-Strike 2", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/bnqrf9kv.webp" },
+    "starrail.exe": { name: "Honkai: Star Rail", logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/z227c73t.jpg" },
 };
 
 const Wasted: React.FC = () => {
@@ -35,7 +36,7 @@ const Wasted: React.FC = () => {
             // Convert object to an array and map game names/logos
             const gameArray: GameData[] = Object.entries(data)
                 .map(([key, value]: [string, any]) => {
-                    const gameInfo = gameDataMap[key.toLowerCase()] || { name: key.replace('.exe', ''), logo: "https://via.placeholder.com/64" };
+                    const gameInfo = gameDataMap[key.toLowerCase()] || { name: key.replace('.exe', ''), logo: "https://r2.e-z.host/7ed0180f-b228-49a7-be1e-0183c1938777/q4iqn8qq.svg" };
                     return {
                         name: gameInfo.name,
                         formattedTime: value.formattedTime,
